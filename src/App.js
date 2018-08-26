@@ -65,10 +65,30 @@ class App extends Component {
     };
 
     addToBasket = (event) => {
-        const id= parseInt(event.target.id, 10),
-            basket = [...this.state.shoppingBasket],
+        const id= parseInt(event.target.id, 10);
+        const basket = [...this.state.shoppingBasket],
             allArticles = [...this.state.allArticles];
         for (let article of this.state.articlesToShow) {
+            if (id === article.id){
+                allArticles[id].quantity--;
+                let item = {...article};
+                item["basketId"] = basket.length;
+                basket.push(item);
+            }
+        }
+        let total = basket.map(article => article.price).reduce((total, price) => total+price);
+        this.setState({
+            shoppingBasket:basket,
+            allArticles,
+            totalPrice:total
+        });
+        this.quantityHandler(id, allArticles[id].quantity);
+    };
+
+    addArticle = (id) => {
+        const basket = [...this.state.shoppingBasket],
+            allArticles = [...this.state.allArticles];
+        for (let article of allArticles) {
             if (id === article.id){
                 allArticles[id].quantity--;
                 let item = {...article};
@@ -186,6 +206,49 @@ class App extends Component {
             });
     };
 
+    addOneMoreArticle = (id) => {
+        console.log(id, "+");
+        const basket = [...this.state.shoppingBasket],
+            allArticles = [...this.state.allArticles];
+        for (let article of allArticles) {
+            if (id === article.id){
+                allArticles[id].quantity--;
+                let item = {...article};
+                item["basketId"] = basket.length;
+                basket.push(item);
+            }
+        }
+        let total = basket.map(article => article.price).reduce((total, price) => total+price);
+        this.setState({
+            shoppingBasket:basket,
+            allArticles,
+            totalPrice:total
+        });
+        this.quantityHandler(id, allArticles[id].quantity);
+    };
+
+    removeOneFromBasket = (id) => {
+        console.log(id, "-");
+        let basket = [...this.state.shoppingBasket],
+            allArticles = [...this.state.allArticles],
+            totalPrice = this.state.totalPrice;
+        for (let article in basket) {
+            if (id === basket[article].id){
+                allArticles[id].quantity++;
+                totalPrice -= allArticles[id].price;
+                delete basket[article];
+                break;
+            }
+        }
+        basket = basket.sort((a,b) => a.basketId<b.basketId).slice(0,basket.length-1);
+        this.setState({
+            shoppingBasket:basket,
+            allArticles,
+            totalPrice
+        });
+        this.quantityHandler(id, allArticles[id].quantity);
+    };
+
     render() {
         return (
             <div className="App">
@@ -201,7 +264,10 @@ class App extends Component {
                        totalPrice={this.state.totalPrice}
                        show={this.state.modal}
                        hideModal={this.hideModal}
-                       user={this.state.loggedUser}/>
+                       user={this.state.loggedUser}
+                       allArticles={this.state.allArticles}
+                       addOneMore={this.addOneMoreArticle}
+                       removeOneFromBasket={this.removeOneFromBasket}/>
                 <Modal type="loginModal" login={this.login} hideModal={this.hideModal} show={this.state.loginModal}/>
                 <Modal type="signInModal" addNewUser={this.addNewUser} hideModal={this.hideModal} show={this.state.signInModal}/>
             </div>

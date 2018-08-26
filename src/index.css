@@ -152,3 +152,33 @@ footer {
     background-color: cadetblue;
     padding: 15px;
 }
+
+table.basketTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table.basketTable th {
+    border-bottom: solid 2px black;
+}
+
+table.basketTable td {
+    border-bottom: solid 1px #cdcdcd;
+}
+
+table.basketTable button {
+    margin: 3px 5px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: cadetblue;
+    color: white;
+    cursor: pointer;
+}
+
+table.basketTable button:hover {
+    background-color: darkslateblue;
+}
+
+table.basketTable button:disabled {
+    background-color: grey;
+}

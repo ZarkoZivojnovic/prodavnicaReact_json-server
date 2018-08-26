@@ -1,10 +1,11 @@
 import React from "react";
 
-const articlesListTable = ({list}) => {
-    if (list.length === 0) return;
-    const sortedList = list.sort((a, b) => {
-        return a.id < b.id;
+const articlesListTable = (props) => {
+    if (props.list.length === 0) return;
+    const sortedList = props.list.sort(function(a, b){
+        return a.name === b.name? 0 : +(a.name> b.name) || -1;
     });
+    console.log("sorted list for table",sortedList);
     let listForPrint = [],
         article = {
             name:"",
@@ -20,12 +21,13 @@ const articlesListTable = ({list}) => {
             listForPrint[article.index] = {
                 name: currentItem.name,
                 count: 1,
-                price: currentItem.price
+                price: currentItem.price,
+                id: currentItem.id
             }
         }
     }
     return (
-        <table>
+        <table className="basketTable">
             <thead>
                 <tr>
                     <th>Article:</th>
@@ -36,13 +38,20 @@ const articlesListTable = ({list}) => {
                 </tr>
             </thead>
             <tbody>
-                {columnsForBasketTable(listForPrint)}
+                {columnsForBasketTable(listForPrint, props)}
             </tbody>
         </table>
     )
 };
 
-const columnsForBasketTable = (listForPrint) => {
+const isItAvailable = (id, {allArticles}) => {
+    for (let item in allArticles){
+        if (allArticles[item].id === id && allArticles[item].quantity > 0) return false;
+    }
+    return true;
+};
+
+const columnsForBasketTable = (listForPrint, props) => {
     return listForPrint.map((item, index) => {
         return (
             <tr key={index}>
@@ -51,8 +60,8 @@ const columnsForBasketTable = (listForPrint) => {
                 <td>{item.count}</td>
                 <td>{item.price * item.count},00</td>
                 <td>
-                    <button>+</button>
-                    <button>-</button>
+                    <button onClick={event => {props.addOneMore(item.id)}} disabled={isItAvailable(item.id, props)}>+</button>
+                    <button onClick={event => {props.removeOneFromBasket(item.id)}}>-</button>
                 </td>
             </tr>
         )
@@ -60,9 +69,7 @@ const columnsForBasketTable = (listForPrint) => {
 };
 
 const checkOutDisable = (props) => {
-    if (props.user === "" || props.list.length===0){
-        return "disabled";
-    }
+    return props.user === "" || props.list.length===0;
 };
 
 const typeOfModal = (props) => {
@@ -76,11 +83,9 @@ const typeOfModal = (props) => {
                     props.hideModal("modal")
                 }}>Continue Shopping
                 </button>
-                <button className="btn" onClick={() => {
-                    alert("checkout")
-                }}
-                        disabled={checkOutDisable(props)}>Checkout
-                </button>
+                <button className="btn"
+                        onClick={() => {alert("checkout")}}
+                        disabled={checkOutDisable(props)}>Checkout</button>
                 <button className="btn close_modal"
                         onClick={event => {props.hideModal("modal")}}>X</button>
             </div>
