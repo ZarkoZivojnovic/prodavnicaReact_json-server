@@ -1,0 +1,154 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+}
+
+header {
+    padding: 10px 20px;
+    width: 100%;
+    text-align: center;
+    background-color: cadetblue;
+}
+
+.header_top {
+    margin: 10px 0;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.header_top > div, nav {
+    margin: 10px auto;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+header > input, input {
+    width: 250px;
+    margin:5px auto;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: solid 1px gainsboro;
+}
+
+.logo {
+    width: 150px;
+    height: auto;
+}
+
+.logo img {
+    width: 100%;
+}
+
+nav {
+    margin: auto;
+}
+
+a {
+    font-weight: bold;
+    text-decoration: none;
+    padding: 5px;
+    width: 120px;
+    color: gainsboro;
+    border-bottom: solid 2px white;
+    margin: 3px 5px;
+}
+
+a:hover {
+    color: darkslateblue;
+}
+
+.main_content_div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: gainsboro;
+    height: auto;
+    padding: 30px 50px;
+    margin: 10px;
+}
+
+.article_single {
+    padding: 15px 10px;
+    width: 200px;
+    text-align: center;
+    border: solid 1px gray;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.btn {
+    margin: 15px 30px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: cadetblue;
+    color: white;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: darkslateblue;
+}
+
+.btn:disabled {
+    background-color: grey;
+}
+
+.close_modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.modal {
+    width: 60%;
+    min-height: 300px;
+    position: fixed;
+    top: 100px;
+    left: 20%;
+    border:solid 1px white;
+    border-radius: 15px;
+    box-shadow: 2px 2px 1px gray;
+    background-color: cadetblue;
+    padding: 30px;
+    transition: all 500ms ease-in-out;
+    text-align: center;
+}
+
+.loginModal {
+    position: fixed;
+    width: 50%;
+    top: 150px;
+    left: 25%;
+    border:solid 1px white;
+    border-radius: 30px;
+    background-color: cadetblue;
+    padding: 30px;
+    text-align: center;
+}
+
+.basketBtn {
+    cursor: pointer;
+}
+
+footer {
+    background-color: cadetblue;
+    padding: 15px;
+}

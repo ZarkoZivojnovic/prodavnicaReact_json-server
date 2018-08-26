@@ -1,0 +1,171 @@
+{
+  "articles": [
+    {
+      "id": 0,
+      "name": "patike",
+      "price": 5000,
+      "quantity": 15,
+      "photo": "none"
+    },
+    {
+      "id": 1,
+      "name": "papuče",
+      "price": 2500,
+      "quantity": 99,
+      "photo": "none"
+    },
+    {
+      "id": 2,
+      "name": "jakna",
+      "price": 6000,
+      "quantity": 111,
+      "photo": "none"
+    },
+    {
+      "id": 3,
+      "name": "majica",
+      "price": 1500,
+      "quantity": 15,
+      "photo": "none"
+    },
+    {
+      "id": 4,
+      "name": "farmerice",
+      "price": 4000,
+      "quantity": 0,
+      "photo": "none"
+    },
+    {
+      "id": 5,
+      "name": "čizme",
+      "price": 8000,
+      "quantity": 55,
+      "photo": "none"
+    },
+    {
+      "id": 6,
+      "name": "cipele",
+      "price": 6000,
+      "quantity": 0,
+      "photo": "none"
+    },
+    {
+      "id": 7,
+      "name": "kapa",
+      "price": 1000,
+      "quantity": 0,
+      "photo": "none"
+    },
+    {
+      "id": 8,
+      "name": "šal",
+      "price": 1550,
+      "quantity": 1,
+      "photo": "none"
+    },
+    {
+      "id": 9,
+      "name": "čarape",
+      "price": 500,
+      "quantity": 2,
+      "photo": "none"
+    },
+    {
+      "id": 10,
+      "name": "pertle",
+      "price": 150,
+      "quantity": 0,
+      "photo": "none"
+    },
+    {
+      "id": 11,
+      "name": "kačket",
+      "price": 2000,
+      "quantity": 0,
+      "photo": "none"
+    },
+    {
+      "id": 12,
+      "name": "dukser",
+      "price": 3500,
+      "quantity": 11,
+      "photo": "none"
+    },
+    {
+      "id": 13,
+      "name": "košulja",
+      "price": 3000,
+      "quantity": 7,
+      "photo": "none"
+    },
+    {
+      "id": 14,
+      "name": "kaput",
+      "price": 9000,
+      "quantity": 1,
+      "photo": "none"
+    }
+  ],
+  "users": [
+    {
+      "username": "zarko",
+      "email": "zivojnovic@gmail.com",
+      "password": "asdfasdf",
+      "confirmPass": "asdfasdf",
+      "phone": "0631551960",
+      "address": {
+        "firstName": "Zarko",
+        "lastName": "Zivojnovic",
+        "street": "b.j.34",
+        "town": "Dolovo",
+        "country": "Serbia"
+      },
+      "id": 1
+    },
+    {
+      "username": "asdfasdf",
+      "email": "asdf@gmail.com",
+      "password": "asdfasdf",
+      "confirmPass": "asdfasdf",
+      "phone": "asdfasdf",
+      "address": {
+        "firstName": "asdfasdf",
+        "lastName": "asdfasdf",
+        "street": "asdfasdf",
+        "town": "asdfasdf",
+        "country": "asdfasdf"
+      },
+      "id": 2
+    },
+    {
+      "username": "asdf",
+      "email": "asdf@gmail.com",
+      "password": "asdf",
+      "confirmPass": "asdf",
+      "phone": "asdf",
+      "address": {
+        "firstName": "asdf",
+        "lastName": "asdf",
+        "street": "asdf",
+        "town": "asdf",
+        "country": "asdf"
+      },
+      "id": 3
+    },
+    {
+      "username": "sdfg",
+      "email": "sdfg@gmial.com",
+      "password": "dfgh",
+      "confirmPass": "dfgh",
+      "phone": "",
+      "address": {
+        "firstName": "",
+        "lastName": "",
+        "street": "",
+        "town": "",
+        "country": ""
+      },
+      "id": 4
+    }
+  ]
+}
