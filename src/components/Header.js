@@ -6,7 +6,7 @@ const isUserLogged = (props) => {
     if (props.loggedUser !== "") {
         return (
             <nav>
-                <h4>Logged user: {props.loggedUser}</h4>
+                <h4>Logged user: {props.loggedUser.username}</h4>
                 <button className="btn" onClick={props.signOut}>Sign Out</button>
             </nav>
         )

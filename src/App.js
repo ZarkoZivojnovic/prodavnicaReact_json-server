@@ -172,7 +172,7 @@ class App extends Component {
                     if (data.username === username){
                         if (data.password === password){
                             this.setState({
-                                loggedUser: username
+                                loggedUser: data
                             });
                             this.hideModal("loginModal");
                             return;
@@ -189,11 +189,19 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <Header searchKeywords={this.state.searchKeywords} keywordHandler={this.searchForArticle}
-                        totalPrice={this.state.totalPrice} showModal={this.showModal} loggedUser={this.state.loggedUser} signOut={this.signOut}/>
+                <Header searchKeywords={this.state.searchKeywords}
+                        keywordHandler={this.searchForArticle}
+                        totalPrice={this.state.totalPrice}
+                        showModal={this.showModal}
+                        loggedUser={this.state.loggedUser}
+                        signOut={this.signOut}/>
                 <Main articles={this.state.articlesToShow} addToBasket={this.addToBasket}/>
                 <Footer/>
-                <Modal type="shoppingBasket" list={this.state.shoppingBasket} totalPrice={this.state.totalPrice} show={this.state.modal} hideModal={this.hideModal}/>
+                <Modal type="shoppingBasket" list={this.state.shoppingBasket}
+                       totalPrice={this.state.totalPrice}
+                       show={this.state.modal}
+                       hideModal={this.hideModal}
+                       user={this.state.loggedUser}/>
                 <Modal type="loginModal" login={this.login} hideModal={this.hideModal} show={this.state.loginModal}/>
                 <Modal type="signInModal" addNewUser={this.addNewUser} hideModal={this.hideModal} show={this.state.signInModal}/>
             </div>

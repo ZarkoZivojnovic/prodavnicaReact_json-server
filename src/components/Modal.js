@@ -1,6 +1,7 @@
 import React from "react";
 
 const articlesListTable = ({list}) => {
+    if (list.length === 0) return;
     const sortedList = list.sort((a, b) => {
         return a.id < b.id;
     });
@@ -58,6 +59,12 @@ const columnsForBasketTable = (listForPrint) => {
     });
 };
 
+const checkOutDisable = (props) => {
+    if (props.user === "" || props.list.length===0){
+        return "disabled";
+    }
+};
+
 const typeOfModal = (props) => {
     if (props.type === "shoppingBasket") {
         return (
@@ -71,12 +78,11 @@ const typeOfModal = (props) => {
                 </button>
                 <button className="btn" onClick={() => {
                     alert("checkout")
-                }}>Checkout
+                }}
+                        disabled={checkOutDisable(props)}>Checkout
                 </button>
-                <button className="btn close_modal" onClick={event => {
-                    props.hideModal("modal")
-                }}>X
-                </button>
+                <button className="btn close_modal"
+                        onClick={event => {props.hideModal("modal")}}>X</button>
             </div>
         )
     } else if (props.type === "loginModal") {
