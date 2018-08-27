@@ -29,7 +29,7 @@ const header = (props) => {
                     <a href="/">Categories</a>
                 </nav>
                 {isUserLogged(props)}
-                <div className="basketBtn"  onClick={event => {props.showModal("modal")}}>
+                <div className="basketBtn"  onClick={event => {props.showModal("basketModal")}}>
                     <img src={shoppingCart} alt="shoppingCart" style={{width:"60px", height:"auto"}}/>
                     <p>Total: <span style={{fontWeight:"bold"}}>{props.totalPrice},00</span></p>
                 </div>

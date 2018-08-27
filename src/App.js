@@ -12,10 +12,10 @@ class App extends Component {
         searchKeywords: "",
         allArticles: [],
         articlesToShow: [],
-        shoppingBasket: [],
-        totalPrice: 0,
-        loggedUser: "",
-        modal: false,
+        shoppingBasket: localStorage.getItem("shoppingBasket")!==null ? JSON.parse(localStorage.getItem("shoppingBasket")):[],
+        totalPrice: localStorage.getItem("totalPrice")!==null ? JSON.parse(localStorage.getItem("totalPrice")):0,
+        loggedUser: localStorage.getItem("loggedUser")!==null ? JSON.parse(localStorage.getItem("loggedUser")):"",
+        basketModal: false,
         loginModal:false,
         signInModal:false
     };
@@ -24,7 +24,8 @@ class App extends Component {
         event.preventDefault();
         this.setState({
             loggedUser:""
-        })
+        });
+        localStorage.removeItem("loggedUser");
     };
 
     componentDidMount() {
@@ -82,26 +83,8 @@ class App extends Component {
             allArticles,
             totalPrice:total
         });
-        this.quantityHandler(id, allArticles[id].quantity);
-    };
-
-    addArticle = (id) => {
-        const basket = [...this.state.shoppingBasket],
-            allArticles = [...this.state.allArticles];
-        for (let article of allArticles) {
-            if (id === article.id){
-                allArticles[id].quantity--;
-                let item = {...article};
-                item["basketId"] = basket.length;
-                basket.push(item);
-            }
-        }
-        let total = basket.map(article => article.price).reduce((total, price) => total+price);
-        this.setState({
-            shoppingBasket:basket,
-            allArticles,
-            totalPrice:total
-        });
+        localStorage.setItem("shoppingBasket", JSON.stringify(basket));
+        localStorage.setItem("totalPrice", JSON.stringify(total));
         this.quantityHandler(id, allArticles[id].quantity);
     };
 
@@ -195,6 +178,7 @@ class App extends Component {
                                 loggedUser: data
                             });
                             this.hideModal("loginModal");
+                            localStorage.setItem("loggedUser", JSON.stringify(data));
                             return;
                         } else {
                             alert("pogresan pass");
@@ -224,6 +208,8 @@ class App extends Component {
             allArticles,
             totalPrice:total
         });
+        localStorage.setItem("shoppingBasket", JSON.stringify(basket));
+        localStorage.setItem("totalPrice", JSON.stringify(total));
         this.quantityHandler(id, allArticles[id].quantity);
     };
 
@@ -246,6 +232,8 @@ class App extends Component {
             allArticles,
             totalPrice
         });
+        localStorage.setItem("shoppingBasket", JSON.stringify(basket));
+        localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
         this.quantityHandler(id, allArticles[id].quantity);
     };
 
@@ -262,7 +250,7 @@ class App extends Component {
                 <Footer/>
                 <Modal type="shoppingBasket" list={this.state.shoppingBasket}
                        totalPrice={this.state.totalPrice}
-                       show={this.state.modal}
+                       show={this.state.basketModal}
                        hideModal={this.hideModal}
                        user={this.state.loggedUser}
                        allArticles={this.state.allArticles}

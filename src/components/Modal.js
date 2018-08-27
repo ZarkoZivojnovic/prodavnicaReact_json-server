@@ -80,14 +80,14 @@ const typeOfModal = (props) => {
                 <ul>{articlesListTable(props)}</ul>
                 <h4 style={{fontWeight: "bold"}}>Total price: {props.totalPrice},00</h4>
                 <button className="btn" onClick={event => {
-                    props.hideModal("modal")
+                    props.hideModal("basketModal")
                 }}>Continue Shopping
                 </button>
                 <button className="btn"
                         onClick={() => {alert("checkout")}}
                         disabled={checkOutDisable(props)}>Checkout</button>
                 <button className="btn close_modal"
-                        onClick={event => {props.hideModal("modal")}}>X</button>
+                        onClick={event => {props.hideModal("basketModal")}}>X</button>
             </div>
         )
     } else if (props.type === "loginModal") {
