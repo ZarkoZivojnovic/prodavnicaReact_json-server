@@ -11,14 +11,14 @@
       "id": 1,
       "name": "papuče",
       "price": 2500,
-      "quantity": 48,
+      "quantity": 47,
       "photo": "none"
     },
     {
       "id": 2,
       "name": "jakna",
       "price": 6000,
-      "quantity": 22,
+      "quantity": 21,
       "photo": "none"
     },
     {
