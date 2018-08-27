@@ -26,7 +26,7 @@ const header = (props) => {
                 <div className="logo"><img src={logo} alt="logo"/></div>
                 <nav>
                     <a href="/">Home</a>
-                    <a href="/">Categories</a>
+                    <a href="/" onClick={(event) => {event.preventDefault();props.showModal("showCategoriesModal");}}>Categories</a>
                 </nav>
                 {isUserLogged(props)}
                 <div className="basketBtn"  onClick={event => {props.showModal("basketModal")}}>

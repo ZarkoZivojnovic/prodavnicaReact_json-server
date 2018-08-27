@@ -17,7 +17,8 @@ class App extends Component {
         loggedUser: localStorage.getItem("loggedUser")!==null ? JSON.parse(localStorage.getItem("loggedUser")):"",
         basketModal: false,
         loginModal:false,
-        signInModal:false
+        signInModal:false,
+        showCategoriesModal: false
     };
 
     signOut = (event) => {
@@ -191,7 +192,6 @@ class App extends Component {
     };
 
     addOneMoreArticle = (id) => {
-        console.log(id, "+");
         const basket = [...this.state.shoppingBasket],
             allArticles = [...this.state.allArticles];
         for (let article of allArticles) {
@@ -214,7 +214,6 @@ class App extends Component {
     };
 
     removeOneFromBasket = (id) => {
-        console.log(id, "-");
         let basket = [...this.state.shoppingBasket],
             allArticles = [...this.state.allArticles],
             totalPrice = this.state.totalPrice;
@@ -235,6 +234,21 @@ class App extends Component {
         localStorage.setItem("shoppingBasket", JSON.stringify(basket));
         localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
         this.quantityHandler(id, allArticles[id].quantity);
+    };
+
+    categoriesFilter = (category) => {
+        let arr;
+        if (category === "all"){
+            arr = this.state.allArticles;
+        } else {
+            arr = this.state.allArticles.filter(item => {
+                return item["category"] === category;
+            })
+        }
+        this.setState({
+            articlesToShow: arr
+        });
+        this.hideModal("showCategoriesModal");
     };
 
     render() {
@@ -258,6 +272,11 @@ class App extends Component {
                        removeOneFromBasket={this.removeOneFromBasket}/>
                 <Modal type="loginModal" login={this.login} hideModal={this.hideModal} show={this.state.loginModal}/>
                 <Modal type="signInModal" addNewUser={this.addNewUser} hideModal={this.hideModal} show={this.state.signInModal}/>
+                <Modal type="categoriesModal"
+                       allArticles={this.state.allArticles}
+                       categoriesFilter={this.categoriesFilter}
+                       show={this.state.showCategoriesModal}
+                       hideModal={this.hideModal}/>
             </div>
         );
     }

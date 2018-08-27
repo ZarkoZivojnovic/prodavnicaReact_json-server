@@ -5,7 +5,6 @@ const articlesListTable = (props) => {
     const sortedList = props.list.sort(function(a, b){
         return a.name === b.name? 0 : +(a.name> b.name) || -1;
     });
-    console.log("sorted list for table",sortedList);
     let listForPrint = [],
         article = {
             name:"",

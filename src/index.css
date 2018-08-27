@@ -182,3 +182,12 @@ table.basketTable button:hover {
 table.basketTable button:disabled {
     background-color: grey;
 }
+
+button.categoryBtn.btn {
+    width: 100%;
+    margin: 10px auto;
+}
+
+button.categoryBtn.btn:first-child {
+    margin-top: 30px;
+}
