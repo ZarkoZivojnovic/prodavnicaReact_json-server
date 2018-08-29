@@ -18,7 +18,8 @@ class App extends Component {
         basketModal: false,
         loginModal:false,
         signInModal:false,
-        showCategoriesModal: false
+        showCategoriesModal: false,
+        checkOutModal: false
     };
 
     signOut = (event) => {
@@ -251,6 +252,18 @@ class App extends Component {
         this.hideModal("showCategoriesModal");
     };
 
+    checkOutDone = () => {
+        alert("done!");
+        this.setState({
+            shoppingBasket:[],
+            totalPrice:0,
+            checkOutModal:false,
+            basketModal:false
+        });
+        localStorage.removeItem("shoppingBasket");
+        localStorage.removeItem("totalPrice");
+    };
+
     render() {
         return (
             <div className="App">
@@ -266,9 +279,12 @@ class App extends Component {
                        totalPrice={this.state.totalPrice}
                        show={this.state.basketModal}
                        hideModal={this.hideModal}
+                       showModal={this.showModal}
                        user={this.state.loggedUser}
                        allArticles={this.state.allArticles}
                        addOneMore={this.addOneMoreArticle}
+                       checkOut={this.state.checkOutModal}
+                       checkOutDone={this.checkOutDone}
                        removeOneFromBasket={this.removeOneFromBasket}/>
                 <Modal type="loginModal" login={this.login} hideModal={this.hideModal} show={this.state.loginModal}/>
                 <Modal type="signInModal" addNewUser={this.addNewUser} hideModal={this.hideModal} show={this.state.signInModal}/>

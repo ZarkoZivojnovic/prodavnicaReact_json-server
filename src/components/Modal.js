@@ -10,11 +10,14 @@ class Modal extends Component {
             return <BasketModal totalPrice={props.totalPrice}
                                 show={props.basketModal}
                                 hideModal={props.hideModal}
+                                showModal={props.showModal}
                                 user={props.loggedUser}
                                 allArticles={props.allArticles}
                                 addOneMore={props.addOneMoreArticle}
                                 removeOneFromBasket={props.removeOneFromBasket}
-                                list={props.list}/>
+                                list={props.list}
+                                checkOut={props.checkOut}
+                                checkOutDone={props.checkOutDone}/>
         } else if (props.type === "loginModal") {
             return <LoginModal login={props.login} hideModal={props.hideModal}/>
         } else if (props.type === "signInModal") {
