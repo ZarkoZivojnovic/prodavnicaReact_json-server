@@ -12,7 +12,12 @@ const articles = (props) => {
     const list = props.articlesToShow.map((article) => {
         const available = btnContent(article)==="Add to basket";
         return(
-            <div className="article_single" key={article.id}>
+            <div className="article_single" key={article.id} onClick={event => {
+                if (event.target.nodeName !== "BUTTON") {
+                    props.select(article);
+                    props.showModal("articleModal");
+                }
+            }}>
                 <img src={article.photo==="none" ? noPhoto : article.photo} alt={article.name} style={{width:"100px", height:"auto"}}/>
                 <h3>{article.name}</h3>
                 <p>{article.price} din.</p>

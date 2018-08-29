@@ -3,6 +3,7 @@ import LoginModal from "./loginModal";
 import SignInModal from "./signInModal";
 import BasketModal from "./basketModal";
 import CategoriesModal from "./categoriesModal";
+import ArticleModal from "./ArticleModal";
 
 class Modal extends Component {
     typeOfModal = (props) => {
@@ -24,12 +25,14 @@ class Modal extends Component {
             return <SignInModal addNewUser={props.addNewUser} hideModal={props.hideModal}/>
         } else if (props.type === "categoriesModal"){
             return <CategoriesModal categoriesFilter={props.categoriesFilter} hideModal={props.hideModal}/>
+        } else if (props.type === "articleModal"){
+            return <ArticleModal hideModal={props.hideModal} targetedArticle={props.targetedArticle} addToBasket={props.addToBasket}/>
         }
     };
 
     render(){
         return (
-            <div className="modal" style={{top: this.props.show ? "100px" : "-200vh"}}>
+            <div className="modal" style={{top: this.props.show ? "50px" : "-200vh"}}>
                 {this.typeOfModal(this.props)}
             </div>
         )

@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
 import Modal from "./components/Modal";
+import ModalBackground from "./components/ModalBackground";
 
 const articlesJSON = "http://localhost:3004/articles",
     usersJSON = "http://localhost:3004/users";
@@ -19,7 +20,10 @@ class App extends Component {
         loginModal:false,
         signInModal:false,
         showCategoriesModal: false,
-        checkOutModal: false
+        checkOutModal: false,
+        articleModal:false,
+        targetedArticle: null,
+        background:false
     };
 
     signOut = (event) => {
@@ -57,14 +61,19 @@ class App extends Component {
 
     showModal = (element) => {
         this.setState({
-            [element]:true
+            [element]:true,
+            background:true
         })
     };
 
     hideModal = (element) => {
         this.setState({
-            [element]:false
-        })
+            [element]:false,
+            background:false
+        });
+        if (element === "articleModal") {
+            setTimeout(() => {this.setState({targetedArticle:null})},1e3);
+        }
     };
 
     addToBasket = (event) => {
@@ -258,10 +267,28 @@ class App extends Component {
             shoppingBasket:[],
             totalPrice:0,
             checkOutModal:false,
-            basketModal:false
+            basketModal:false,
+            background:false
         });
         localStorage.removeItem("shoppingBasket");
         localStorage.removeItem("totalPrice");
+    };
+
+    selectArticle = (article) => {
+        this.setState({targetedArticle:article})
+    };
+
+    hideAllModals = () => {
+        this.setState({
+            basketModal: false,
+            loginModal:false,
+            signInModal:false,
+            showCategoriesModal: false,
+            checkOutModal: false,
+            articleModal:false,
+            targetedArticle: null,
+            background:false
+        })
     };
 
     render() {
@@ -273,8 +300,12 @@ class App extends Component {
                         showModal={this.showModal}
                         loggedUser={this.state.loggedUser}
                         signOut={this.signOut}/>
-                <Main articles={this.state.articlesToShow} addToBasket={this.addToBasket}/>
+                <Main articles={this.state.articlesToShow}
+                      addToBasket={this.addToBasket}
+                      showModal={this.showModal}
+                      selectArticle={this.selectArticle}/>
                 <Footer/>
+                <ModalBackground hideAllModals={this.hideAllModals} show={this.state.background}/>
                 <Modal type="shoppingBasket" list={this.state.shoppingBasket}
                        totalPrice={this.state.totalPrice}
                        show={this.state.basketModal}
@@ -293,6 +324,11 @@ class App extends Component {
                        categoriesFilter={this.categoriesFilter}
                        show={this.state.showCategoriesModal}
                        hideModal={this.hideModal}/>
+                <Modal type="articleModal"
+                       hideModal={this.hideModal}
+                       targetedArticle={this.state.targetedArticle}
+                       show={this.state.articleModal}
+                       addToBasket={this.addOneMoreArticle}/>
             </div>
         );
     }

@@ -72,7 +72,6 @@ const checkOutDisable = (props) => {
 };
 
 const modalContent = (props) => {
-    console.log(props.checkOut);
     if (props.checkOut) {
         return (
             <div>
