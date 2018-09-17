@@ -1,1 +1,1 @@
-Online shop build with ReactJS and JSON server
+Online shop (with ReactJS and JSON server)
