@@ -1,3 +1,1 @@
-Online shop build with React.js and json server
-
-You can see demo version here -> 
+Online shop build with ReactJS and JSON server
